@@ -1,0 +1,9 @@
+# Ignore node_modules
+node_modules
+
+# Ignore front end files
+css/*.*
+assets/*.*
+index.html
+script.js
+.DS_Store
