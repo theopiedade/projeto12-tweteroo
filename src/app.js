@@ -11,13 +11,14 @@ const persons = [];
 app.post('/sign-up', (req, res) => {
     const username = req.params.username;
     const avatar = req.params.avatar;
-    if (username && avatar) persons.push()
+    if (username && avatar) persons.push({ username: username, avatar: avatar })
     res.send('OK');
 });
 
 app.post('/tweets', (req, res) => {
     const username = req.params.username;
     const avatar = req.params.avatar;
+    const result = persons.filter((person) => person === );
     if (username && avatar) persons.push()
     res.send('OK');
 });
