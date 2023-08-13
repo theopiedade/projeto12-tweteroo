@@ -1,5 +1,6 @@
 import express from 'express'; // Importa o express da biblioteca
 import cors from 'cors';
+import axios from 'axios';
 
 const app = express(); // Cria uma instância do servidor
 app.use(cors());
