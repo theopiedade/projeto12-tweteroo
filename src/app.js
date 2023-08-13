@@ -6,21 +6,28 @@ app.use(cors());
 app.use(express.json());
 
 const persons = [];
+const tweets = [];
 
 // Configura uma função pra ser executada quando bater um GET na rota "/"
 app.post('/sign-up', (req, res) => {
     const username = req.params.username;
     const avatar = req.params.avatar;
-    if (username && avatar) persons.push({ username: username, avatar: avatar })
+    if (username && avatar) persons.push({ username: username, avatar: avatar });
     res.send('OK');
 });
 
 app.post('/tweets', (req, res) => {
     const username = req.params.username;
-    const avatar = req.params.avatar;
-    const result = persons.filter((person) => person === );
-    if (username && avatar) persons.push()
-    res.send('OK');
+    const tweet = req.params.tweet;
+    const result = persons.filter((person) => person === username);
+    if (!result || result == null || result === undefined) {
+        tweets.push({ username: username, avatar: avatar });
+        res.send('OK');
+    }
+    else {
+        res.send('UNAUTHORIZED');
+    }
+    
 });
 
 // Configura o servidor para rodar na porta 5000
