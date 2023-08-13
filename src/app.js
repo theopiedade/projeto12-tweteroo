@@ -24,17 +24,20 @@ app.post('/tweets', (req, res) => {
         res.send('UNAUTHORIZED');
     }
     else {
-          tweets.push({ username: username, tweet: tweet });
+        tweets.push({ username: username, tweet: tweet });
         res.send('OK');
     }
     
 });
 
 app.get('/tweets', (req, res) => {
-    const username = req.params.username;
-    const avatar = req.params.avatar;
-    if (username && avatar) persons.push({ username: username, avatar: avatar });
-    res.send('OK');
+    const arr = [];
+    tweets.map((tweet, i) => {
+        let avatar = persons.avatar.filter((person) => person.username === tweet.username);
+        if (arr < 10)
+         arr.push({ username: tweet.username, avatar: avatar, tweet: tweet.tweet})
+     } )
+    res.send(arr);
 });
 
 // Configura o servidor para rodar na porta 5000
