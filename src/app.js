@@ -42,7 +42,7 @@ app.post('/sign-up', (req, res) => {
 app.post('/tweets', (req, res) => {
     const username = req.params.username;
     const tweet = req.params.tweet;
-    const result = persons.find((person) => person === username);
+    const result = persons.find((person) => person.username === username);
     if (!result || result == null || result === undefined) {
         res.send('UNAUTHORIZED');
     }
@@ -56,7 +56,7 @@ app.post('/tweets', (req, res) => {
 app.get('/tweets', (req, res) => {
     const arr = [];
     tweets.map((tweet, i) => {
-        let avatar = persons.avatar.filter((person) => person.username === tweet.username);
+        let avatar = persons.avatar.find((person) => person.username === tweet.username);
         if (arr < 10)
          arr.push({ username: tweet.username, avatar: avatar, tweet: tweet.tweet})
      } )
