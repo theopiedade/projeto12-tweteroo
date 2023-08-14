@@ -1,13 +1,35 @@
 import express from 'express'; // Importa o express da biblioteca
 import cors from 'cors';
-import axios from 'axios';
 
 const app = express(); // Cria uma instância do servidor
-app.use(cors());
+//app.use(cors());
 app.use(express.json());
 
-const persons = [];
-const tweets = [];
+const persons = [ 
+    {
+    username: 'bobesponja', 
+	avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png" 
+    },
+    {
+    username: 'siriguejo', 
+    avatar: "https://upload.wikimedia.org/wikipedia/pt/thumb/8/80/Mr._Krabs.png/200px-Mr._Krabs.png" 
+    }
+];
+const tweets = [
+    {
+      username: "bobesponja",
+      tweet: "Eu amo hambúrguer de siri!"
+    },
+    {
+      username: "bobesponja",
+      tweet: "Olá Siriguejo!"
+    },
+    {
+        username: "siriguejo",
+        tweet: "Olá Bob Esponja!"
+    }
+
+];
 
 // Configura uma função pra ser executada quando bater um GET na rota "/"
 app.post('/sign-up', (req, res) => {
@@ -20,7 +42,7 @@ app.post('/sign-up', (req, res) => {
 app.post('/tweets', (req, res) => {
     const username = req.params.username;
     const tweet = req.params.tweet;
-    const result = persons.filter((person) => person === username);
+    const result = persons.find((person) => person === username);
     if (!result || result == null || result === undefined) {
         res.send('UNAUTHORIZED');
     }
