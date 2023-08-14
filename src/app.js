@@ -36,7 +36,14 @@ app.get('/tweets', (req, res) => {
     const arr = [];
     if (tweets.length > 0)
     tweets.map((tweet, i) => {
-        let avatarIndex = persons.username.indexOf(tweet.username);
+        let index = -1;
+        let val = tweet.username;
+        var avatarIndex = persons.find(function(item, i){
+            if(item.name === val){
+              index = i;
+              return i;
+            }
+          });
         let avatar = persons[avatarIndex].avatar;
         if (arr.length < 9)
          arr.push({ username: tweet.username, avatar: avatar, tweet: tweet.tweet})
