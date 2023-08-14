@@ -5,31 +5,8 @@ const app = express(); // Cria uma instância do servidor
 //app.use(cors());
 app.use(express.json());
 
-const persons = [ 
-    {
-    username: 'bobesponja', 
-	avatar: "https://cdn.shopify.com/s/files/1/0150/0643/3380/files/Screen_Shot_2019-07-01_at_11.35.42_AM_370x230@2x.png" 
-    },
-    {
-    username: 'siriguejo', 
-    avatar: "https://upload.wikimedia.org/wikipedia/pt/thumb/8/80/Mr._Krabs.png/200px-Mr._Krabs.png" 
-    }
-];
-const tweets = [
-    {
-      username: "bobesponja",
-      tweet: "Eu amo hambúrguer de siri!"
-    },
-    {
-      username: "bobesponja",
-      tweet: "Olá Siriguejo!"
-    },
-    {
-        username: "siriguejo",
-        tweet: "Olá Bob Esponja!"
-    }
-
-];
+const persons = [ ];
+const tweets = [ ];
 
 // Configura uma função pra ser executada quando bater um GET na rota "/"
 app.post('/sign-up', (req, res) => {
@@ -55,9 +32,10 @@ app.post('/tweets', (req, res) => {
 
 app.get('/tweets', (req, res) => {
     const arr = [];
+    if (tweets.length > 0)
     tweets.map((tweet, i) => {
         let avatar = persons.avatar.find((person) => person.username === tweet.username);
-        if (arr < 10)
+        if (arr.length < 10)
          arr.push({ username: tweet.username, avatar: avatar, tweet: tweet.tweet})
      } )
     res.send(arr);
