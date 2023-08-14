@@ -13,7 +13,9 @@ app.post('/sign-up', (req, res) => {
     const username = req.params.username;
     const avatar = req.params.avatar;
     if (username && avatar) persons.push({ username: username, avatar: avatar });
-    res.send('OK');
+    if (username == null || username.length === 0 || avatar == null || avatar.length === 0)
+    res.send('400');
+    else res.send('OK');
 });
 
 app.post('/tweets', (req, res) => {
@@ -35,7 +37,7 @@ app.get('/tweets', (req, res) => {
     if (tweets.length > 0)
     tweets.map((tweet, i) => {
         let avatarIndex = persons.username.indexOf(tweet.username);
-        let avatar = persons.avatar[avatarIndex];
+        let avatar = persons[avatarIndex].avatar;
         if (arr.length < 9)
          arr.push({ username: tweet.username, avatar: avatar, tweet: tweet.tweet})
      } )
